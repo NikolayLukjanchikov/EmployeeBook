@@ -6,49 +6,45 @@ import ru.JD10.EmployeeBook.model.Employee;
 import ru.JD10.EmployeeBook.exceptions.EmployeeAlreadyAddedException;
 import ru.JD10.EmployeeBook.exceptions.EmployeeNotFoundException;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    public final List<Employee> employees = new ArrayList<>();
+    public final Map<String, Employee> employees;
 
-
+    public EmployeeServiceImpl() {
+        this.employees = new HashMap<>();
+    }
+@Override
     public Employee addNewEmployee(String firstName, String lastName) {
         Employee newEmployeeToAdd = new Employee(firstName, lastName);
-        if (employees.contains(newEmployeeToAdd)) {
+        if (employees.containsKey(newEmployeeToAdd.getFullName())) {
             throw new EmployeeAlreadyAddedException();
         } else {
-            employees.add(newEmployeeToAdd);
+            employees.put(newEmployeeToAdd.getFullName(), newEmployeeToAdd);
         }
-        return employees.get((employees.size() - 1));
+        return newEmployeeToAdd;
     }
-
+@Override
     public Employee deleteEmployee(String firstName, String lastName) {
         Employee employeeToDelete = new Employee(firstName, lastName);
-        if (employees.contains(employeeToDelete)) {
-            for (int i = 0; i < employees.size(); i++) {
-                if (employees.get(i).equals(employeeToDelete)) {
-                    employeeToDelete = employees.get(i);
-                    employees.remove(employees.get(i));
-                    return employeeToDelete;
-                }
-            }
+        if (employees.containsKey(employeeToDelete.getFullName())) {
+            return employees.remove(employeeToDelete.getFullName());
+        } else {
+            throw new EmployeeNotFoundException();
         }
-        throw new EmployeeNotFoundException();
     }
-
+@Override
     public Employee findEmployee(String firstName, String lastName) {
         Employee employeeToFind = new Employee(firstName, lastName);
-        if (employees.contains(employeeToFind)) {
-            for (int i = 0; i < employees.size(); i++) {
-                return employees.get(i);
-            }
+        if (employees.containsKey(employeeToFind.getFullName())) {
+            return employees.get(employeeToFind.getFullName());
+        } else {
+            throw new EmployeeNotFoundException();
         }
-        throw new EmployeeNotFoundException();
     }
-
-    public List printAllEmployees() {
-        return employees;
+@Override
+    public Collection<Employee> printAllEmployees() {
+        return Collections.unmodifiableCollection(employees.values());
     }
 }

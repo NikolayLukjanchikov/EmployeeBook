@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.JD10.EmployeeBook.model.Employee;
 import ru.JD10.EmployeeBook.services.EmployeeService;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -35,7 +37,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/printall")
-    private List printAllEmployees() {
+    private Collection<Employee> printAllEmployees() {
         return employeeService.printAllEmployees();
     }
 

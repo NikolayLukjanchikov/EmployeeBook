@@ -6,6 +6,8 @@ public class Employee {
 
     private String firstName;
     private String lastName;
+    private double salary;
+    private int departmentNumber;
 
     public Employee(String firstName, String lastName) {
         this.firstName = firstName;
@@ -30,11 +32,31 @@ public class Employee {
         return Objects.hash(firstName, lastName);
     }
 
+    public String getFullName() {
+        return (firstName + " " + lastName);
+    }
+
     public String getFirstName() {
         return firstName;
     }
 
     public String getLastName() {
         return lastName;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public int getDepartmentNumber() {
+        return departmentNumber;
+    }
+
+    public void setDepartmentNumber(int departmentNumber) {
+        this.departmentNumber = departmentNumber;
     }
 }

@@ -3,6 +3,8 @@ package ru.JD10.EmployeeBook.services;
 
 import ru.JD10.EmployeeBook.model.Employee;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public interface EmployeeService {
@@ -12,5 +14,5 @@ public interface EmployeeService {
 
     Employee findEmployee(String firstName, String lastName);
 
-    List printAllEmployees();
+    Collection<Employee> printAllEmployees();
 }
