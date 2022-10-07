@@ -2,11 +2,14 @@ package ru.JD10.EmployeeBook.services;
 
 
 import org.springframework.stereotype.Service;
-import ru.JD10.EmployeeBook.model.Employee;
 import ru.JD10.EmployeeBook.exceptions.EmployeeAlreadyAddedException;
 import ru.JD10.EmployeeBook.exceptions.EmployeeNotFoundException;
+import ru.JD10.EmployeeBook.model.Employee;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -16,8 +19,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         this.employees = new HashMap<>();
     }
 @Override
-    public Employee addNewEmployee(String firstName, String lastName) {
-        Employee newEmployeeToAdd = new Employee(firstName, lastName);
+    public Employee addNewEmployee(String firstName, String lastName, int salary, int department) {
+        Employee newEmployeeToAdd = new Employee(firstName, lastName, salary, department);
         if (employees.containsKey(newEmployeeToAdd.getFullName())) {
             throw new EmployeeAlreadyAddedException();
         } else {
@@ -44,7 +47,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
     }
 @Override
-    public Collection<Employee> printAllEmployees() {
+    public Collection<Employee> getAllEmployees() {
         return Collections.unmodifiableCollection(employees.values());
     }
 }

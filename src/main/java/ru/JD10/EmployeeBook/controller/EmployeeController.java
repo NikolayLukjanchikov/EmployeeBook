@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.JD10.EmployeeBook.model.Employee;
 import ru.JD10.EmployeeBook.services.EmployeeService;
-
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
@@ -22,8 +19,8 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    private Employee addNewEmployee(@RequestParam String firstName, @RequestParam String lastName) {
-        return employeeService.addNewEmployee(firstName, lastName);
+    private Employee addNewEmployee(@RequestParam String firstName, @RequestParam String lastName, @RequestParam int salary, @RequestParam int departmentNumber) {
+        return employeeService.addNewEmployee(firstName, lastName, salary, departmentNumber);
     }
 
     @GetMapping("/remove")
@@ -38,7 +35,7 @@ public class EmployeeController {
 
     @GetMapping("/printall")
     private Collection<Employee> printAllEmployees() {
-        return employeeService.printAllEmployees();
+        return employeeService.getAllEmployees();
     }
 
 }
