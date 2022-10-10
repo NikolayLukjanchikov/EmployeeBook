@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class DepartmentsServiceImpl implements DepartmentsService {
 
     private final EmployeeService employeeService;
+
     @Autowired
     public DepartmentsServiceImpl(EmployeeService employeeService) {
         this.employeeService = employeeService;

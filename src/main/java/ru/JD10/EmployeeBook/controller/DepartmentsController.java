@@ -28,7 +28,7 @@ public class DepartmentsController {
         return departmentsService.minSalaryEmployeeInDept(departmentId);
     }
 
-    @GetMapping("/all-indepartment")
+    @GetMapping(value = "/all", params = "departmentId")
     private Collection<Employee> getEmployeesFromDepartment(@RequestParam int departmentId) {
         return departmentsService.getEmployeesFromDepartment(departmentId);
     }

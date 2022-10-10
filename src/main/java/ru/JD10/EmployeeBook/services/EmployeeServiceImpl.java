@@ -18,7 +18,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         this.employees = new HashMap<>();
     }
 
-@Override
+    @Override
     public Employee addNewEmployee(String firstName, String lastName, int salary, int department) {
         Employee newEmployeeToAdd = new Employee(firstName, lastName, salary, department);
         if (employees.containsKey(newEmployeeToAdd.getFullName())) {
@@ -28,7 +28,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return newEmployeeToAdd;
     }
-@Override
+
+    @Override
     public Employee deleteEmployee(String firstName, String lastName) {
         Employee employeeToDelete = new Employee(firstName, lastName);
         if (employees.containsKey(employeeToDelete.getFullName())) {
@@ -37,7 +38,8 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeNotFoundException();
         }
     }
-@Override
+
+    @Override
     public Employee findEmployee(String firstName, String lastName) {
         Employee employeeToFind = new Employee(firstName, lastName);
         if (employees.containsKey(employeeToFind.getFullName())) {
@@ -46,7 +48,8 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeNotFoundException();
         }
     }
-@Override
+
+    @Override
     public Collection<Employee> getAllEmployees() {
         return Collections.unmodifiableCollection(employees.values());
     }
