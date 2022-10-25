@@ -20,7 +20,7 @@ public class DepartmentsController {
 
     @GetMapping("/max-salary")
     private Employee maxSalaryEmployee(@RequestParam int departmentId) {
-        return departmentsService.maxSalaryEmployee(departmentId);
+        return departmentsService.maxSalaryEmployeeInDept(departmentId);
     }
 
     @GetMapping("/min-salary")

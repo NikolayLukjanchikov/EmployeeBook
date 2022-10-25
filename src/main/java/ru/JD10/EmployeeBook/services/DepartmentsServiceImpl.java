@@ -19,8 +19,9 @@ public class DepartmentsServiceImpl implements DepartmentsService {
         this.employeeService = employeeService;
     }
 
+
     @Override
-    public Employee maxSalaryEmployee(int department) {
+    public Employee maxSalaryEmployeeInDept(int department) {
         return employeeService.getAllEmployees().stream()
                 .filter(employee -> employee.getDepartmentNumber() == department)
                 .max(Comparator.comparingInt(Employee::getSalary))

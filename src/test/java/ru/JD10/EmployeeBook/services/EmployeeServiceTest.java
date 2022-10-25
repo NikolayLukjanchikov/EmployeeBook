@@ -9,7 +9,7 @@ import ru.JD10.EmployeeBook.model.Employee;
 
 
 import static org.junit.jupiter.api.Assertions.*;
-import static ru.JD10.EmployeeBook.constants.EmployeeServiceTestConstants.*;
+import static ru.JD10.EmployeeBook.constants.Constants.*;
 
 class EmployeeServiceTest {
     private final EmployeeServiceImpl out = new EmployeeServiceImpl();
@@ -17,14 +17,14 @@ class EmployeeServiceTest {
 
     @BeforeEach
     void createTestRepo() {
-        out.addNewEmployee(FIRST_NAME, LAST_NAME, SALARY, DEPARTMENT);
+        out.addNewEmployee(FIRST_NAME, LAST_NAME, SALARY, DEPARTMENT_2);
     }
 
     @Test
     void shouldReturnNewAddedEmployeeAndExceptionAlreadyAddedWhenAddingSameEmployee() {
-        Employee result = out.addNewEmployee(FIRST_NAME_2, LAST_NAME, SALARY, DEPARTMENT);
+        Employee result = out.addNewEmployee(FIRST_NAME_2, LAST_NAME, SALARY, DEPARTMENT_2);
         assertEquals(PETR, result);
-        assertThrows(EmployeeAlreadyAddedException.class, () -> out.addNewEmployee(FIRST_NAME_2, LAST_NAME, SALARY, DEPARTMENT));
+        assertThrows(EmployeeAlreadyAddedException.class, () -> out.addNewEmployee(FIRST_NAME_2, LAST_NAME, SALARY, DEPARTMENT_2));
     }
 
     @Test
@@ -43,7 +43,7 @@ class EmployeeServiceTest {
 
     @Test
     void shouldReturnCapitalizeStringAndExceptionIncorrectSymbolsWhenNotLettersInString() {
-        String result = out.checkNamesString(LOVER_STRING);
+        String result = out.checkNamesString(LOWER_STRING);
         assertEquals(FIRST_NAME, result);
         assertThrows(IncorrectSymbolsException.class, () -> out.checkNamesString(INCORRECT_STRING));
     }
