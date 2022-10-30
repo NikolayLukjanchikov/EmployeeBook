@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-@Repository
 public class EmployeeServiceImpl implements EmployeeService {
     public final Map<String, Employee> employees;
 
