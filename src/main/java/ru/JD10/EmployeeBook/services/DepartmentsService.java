@@ -5,7 +5,7 @@ import ru.JD10.EmployeeBook.model.Employee;
 import java.util.Collection;
 
 public interface DepartmentsService {
-    Employee maxSalaryEmployee(int department);
+    Employee maxSalaryEmployeeInDept(int department);
 
     Employee minSalaryEmployeeInDept(int department);
 
